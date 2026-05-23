@@ -1,0 +1,12 @@
+{
+  "name": "sibukbersantai-studio",
+  "private": true,
+  "scripts": {
+    "dev": "sanity start",
+    "build": "sanity build",
+    "deploy": "sanity deploy"
+  },
+  "dependencies": {
+    "sanity": "^3.45.0"
+  }
+}

@@ -1,9 +1,8 @@
+import { buildSanityUrl } from './config.js'
+
 const works = {
   container: null,
   loaded: false,
-  projectId: 'diz7kk6p',
-  dataset: 'production',
-  apiVersion: '2021-10-21',
 
   init(containerId) {
     this.container = document.getElementById(containerId)
@@ -14,8 +13,8 @@ const works = {
 
     this.container.innerHTML = ''
 
-    const query = '*[_type == "artwork"] | order(_createdAt desc)'
-    const url = `https://${this.projectId}.api.sanity.io/v${this.apiVersion}/data/query/${this.dataset}?query=${encodeURIComponent(query)}`
+    const query = '*[_type == "artwork"] | order(_createdAt desc){title,description,url}'
+    const url = buildSanityUrl(query)
 
     try {
       const response = await fetch(url)
@@ -29,15 +28,19 @@ const works = {
       if (data && data.length > 0) {
         data.forEach(item => {
           const li = document.createElement('li')
-          li.textContent = item.title || 'Judul tidak tersedia'
+          li.innerHTML = `
+            <strong>${item.title || 'Judul tidak tersedia'}</strong>
+            ${item.description ? `<p>${item.description}</p>` : ''}
+            ${item.url ? `<a href="${item.url}" target="_blank" rel="noopener noreferrer">Lihat detail</a>` : ''}
+          `
           this.container.appendChild(li)
         })
         this.loaded = true
       } else {
-        this.container.innerHTML = '<li>Belum ada karya.</li>'
+        this.container.innerHTML = '<li>Belum ada karya. Tambahkan konten di Sanity Studio.</li>'
       }
     } catch (error) {
-      this.container.innerHTML = '<li>Gagal memuat data.</li>'
+      this.container.innerHTML = '<li>Gagal memuat data. Periksa koneksi Sanity atau konfigurasi project.</li>'
       console.error('Sanity API Error:', error)
     }
   }
