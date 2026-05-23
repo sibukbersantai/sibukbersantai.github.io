@@ -1,8 +1,9 @@
-import client from './sanityClient.js'
-
 const works = {
   container: null,
   loaded: false,
+  projectId: 'diz7kk6p',
+  dataset: 'production',
+  apiVersion: '2021-10-21',
 
   init(containerId) {
     this.container = document.getElementById(containerId)
@@ -13,9 +14,17 @@ const works = {
 
     this.container.innerHTML = ''
 
+    const query = '*[_type == "artwork"] | order(_createdAt desc)'
+    const url = `https://${this.projectId}.api.sanity.io/v${this.apiVersion}/data/query/${this.dataset}?query=${encodeURIComponent(query)}`
+
     try {
-      const query = '*[_type == "artwork"] | order(_createdAt desc)'
-      const data = await client.fetch(query)
+      const response = await fetch(url)
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`)
+      }
+
+      const json = await response.json()
+      const data = json.result
 
       if (data && data.length > 0) {
         data.forEach(item => {
