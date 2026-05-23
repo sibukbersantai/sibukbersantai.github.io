@@ -1,0 +1,33 @@
+backend:
+  name: github
+  repo: srinadia/sibukbersantai.github.io
+  branch: main
+  base_url: https://auth.sibukbersantai.github.io
+  auth_endpoint: auth
+
+media_folder: assets/images
+public_folder: /assets/images
+
+collections:
+  - name: settings
+    label: Pengaturan
+    files:
+      - name: site_settings
+        label: Pengaturan Situs
+        file: data/settings.json
+        fields:
+          - {label: "Judul", name: "title", widget: "string"}
+          - {label: "Subtitle", name: "subtitle", widget: "string"}
+          - {label: "Intro", name: "intro", widget: "text"}
+          - {label: "Email Kontak", name: "contactEmail", widget: "string"}
+          - {label: "Instagram", name: "instagram", widget: "string"}
+
+  - name: works
+    label: Karya
+    folder: data/works
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Judul", name: "title", widget: "string"}
+      - {label: "Deskripsi", name: "description", widget: "text"}
+      - {label: "URL", name: "url", widget: "string", required: false}

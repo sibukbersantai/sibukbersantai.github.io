@@ -1,4 +1,4 @@
-import { buildSanityUrl } from './config.js'
+import { fetchJson } from './config.js'
 
 const works = {
   container: null,
@@ -13,17 +13,8 @@ const works = {
 
     this.container.innerHTML = ''
 
-    const query = '*[_type == "artwork"] | order(_createdAt desc){title,description,url}'
-    const url = buildSanityUrl(query)
-
     try {
-      const response = await fetch(url)
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}`)
-      }
-
-      const json = await response.json()
-      const data = json.result
+      const data = await fetchJson('data/works.json')
 
       if (data && data.length > 0) {
         data.forEach(item => {
@@ -37,11 +28,11 @@ const works = {
         })
         this.loaded = true
       } else {
-        this.container.innerHTML = '<li>Belum ada karya. Tambahkan konten di Sanity Studio.</li>'
+        this.container.innerHTML = '<li>Belum ada karya. Tambahkan konten di <code>/admin</code>.</li>'
       }
     } catch (error) {
-      this.container.innerHTML = '<li>Gagal memuat data. Periksa koneksi Sanity atau konfigurasi project.</li>'
-      console.error('Sanity API Error:', error)
+      this.container.innerHTML = '<li>Gagal memuat data. Periksa file <code>data/works.json</code>.</li>'
+      console.error('Error loading works:', error)
     }
   }
 }

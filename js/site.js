@@ -1,4 +1,4 @@
-import { buildSanityUrl } from './config.js'
+import { fetchJson } from './config.js'
 
 const site = {
   homeContainer: null,
@@ -14,18 +14,8 @@ const site = {
   async load() {
     if (this.loaded) return
 
-    const query = '*[_type == "siteSettings"][0]{title,subtitle,intro,contactEmail,instagram}'
-    const url = buildSanityUrl(query)
-
     try {
-      const response = await fetch(url)
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}`)
-      }
-
-      const json = await response.json()
-      const data = json.result
-
+      const data = await fetchJson('data/settings.json')
       if (data) {
         this.render(data)
       } else {
@@ -33,7 +23,7 @@ const site = {
       }
       this.loaded = true
     } catch (error) {
-      console.error('Sanity API Error:', error)
+      console.error('Failed to load settings:', error)
       this.renderFallback()
     }
   },
@@ -60,7 +50,7 @@ const site = {
   renderFallback() {
     this.homeContainer.innerHTML = `
       <h1>Sibuk Bersantai</h1>
-      <p>Konten Sanity belum tersedia. Tambahkan dokumen <code>siteSettings</code> di Sanity Studio.</p>
+      <p>Edit konten di <code>/admin</code> atau update file <code>data/settings.json</code>.</p>
     `
     this.contactContainer.innerHTML = `
       <p>Sibuk Bersantai</p>
