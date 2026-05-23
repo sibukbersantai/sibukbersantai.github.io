@@ -1,14 +1,14 @@
-[
-  {
-    "id": "1",
-    "title": "Proyek Pertama",
-    "description": "Deskripsi proyek pertama Anda di sini",
-    "url": "https://example.com"
-  },
-  {
-    "id": "2", 
-    "title": "Proyek Kedua",
-    "description": "Deskripsi proyek kedua",
-    "url": "https://example.com"
-  }
-]
+{
+  "works": [
+    {
+      "title": "Proyek Pertama",
+      "description": "Deskripsi proyek pertama Anda di sini",
+      "url": "https://example.com"
+    },
+    {
+      "title": "Proyek Kedua",
+      "description": "Deskripsi proyek kedua",
+      "url": "https://example.com"
+    }
+  ]
+}

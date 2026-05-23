@@ -15,9 +15,10 @@ const works = {
 
     try {
       const data = await fetchJson('data/works.json')
+      const works = data.works || data || []
 
-      if (data && data.length > 0) {
-        data.forEach(item => {
+      if (works && works.length > 0) {
+        works.forEach(item => {
           const li = document.createElement('li')
           li.innerHTML = `
             <strong>${item.title || 'Judul tidak tersedia'}</strong>
