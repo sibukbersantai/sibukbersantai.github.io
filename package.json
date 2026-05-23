@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "npx serve dist",
     "build": "cp -r src/* dist/",
-    "deploy": "npm run build && gh-pages -d dist",
+    "deploy": "npm run build && gh-pages -d dist -b main",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -25,6 +25,6 @@
     "@sanity/client": "^6.8.0"
   },
   "devDependencies": {
-    "gh-pages": "^6.3.0"
+    "gh-pages": "^6.1.1"
   }
 }
