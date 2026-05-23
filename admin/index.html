@@ -1,14 +1,121 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="robots" content="noindex" />
-    <title>CMS Admin - Sibuk Bersantai</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/decap-cms@3.0.0/dist/decap-cms.css" />
-  </head>
-  <body>
-    <div id="nc-root"></div>
-    <script src="https://cdn.jsdelivr.net/npm/decap-cms@3.0.0/dist/decap-cms.js"></script>
-  </body>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sibuk Bersantai - Admin</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            max-width: 600px;
+            width: 100%;
+            padding: 40px;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .subtitle {
+            color: #999;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .admin-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 6px;
+            border-left: 4px solid #667eea;
+        }
+        .admin-section h2 {
+            color: #667eea;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .admin-section p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        .edit-link {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background 0.2s;
+            font-weight: 500;
+        }
+        .edit-link:hover {
+            background: #764ba2;
+        }
+        .footer {
+            text-align: center;
+            color: #999;
+            font-size: 12px;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        code {
+            background: #f0f0f0;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📝 Sibuk Bersantai Admin</h1>
+        <p class="subtitle">Edit konten situs Anda dengan mudah</p>
+
+        <div class="admin-section">
+            <h2>⚙️ Pengaturan Situs</h2>
+            <p>Edit judul, subtitle, intro, email kontak, dan link Instagram.</p>
+            <a href="https://github.com/sibukbersantai/sibukbersantai.github.io/edit/main/data/settings.json" target="_blank" class="edit-link">
+                ✏️ Edit Pengaturan
+            </a>
+        </div>
+
+        <div class="admin-section">
+            <h2>✨ Karya / Works</h2>
+            <p>Tambah, edit, atau hapus daftar karya Anda. File berisi array JSON dengan struktur: <code>title</code>, <code>description</code>, <code>url</code>.</p>
+            <a href="https://github.com/sibukbersantai/sibukbersantai.github.io/edit/main/data/works.json" target="_blank" class="edit-link">
+                ✏️ Edit Karya
+            </a>
+        </div>
+
+        <div class="admin-section">
+            <h2>📚 Bantuan</h2>
+            <p><strong>Cara edit:</strong></p>
+            <ol style="margin-left: 20px; color: #666;">
+                <li>Klik tombol "Edit"</li>
+                <li>Ubah JSON sesuai kebutuhan</li>
+                <li>Scroll ke bawah, klik "Commit changes"</li>
+                <li>Website otomatis update dalam 1-2 menit</li>
+            </ol>
+        </div>
+
+        <div class="footer">
+            <p>💾 Perubahan disimpan ke GitHub dan otomatis dipublikasikan ke website</p>
+            <p style="margin-top: 10px;"><a href="../" style="color: #667eea; text-decoration: none;">← Kembali ke Website</a></p>
+        </div>
+    </div>
+</body>
 </html>
