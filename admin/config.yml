@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: srinadia/sibukbersantai.github.io
+  repo: sibukbersantai/sibukbersantai.github.io
   branch: main
   base_url: https://decap-cms-git-master-decaporg.vercel.app
   auth_endpoint: auth
